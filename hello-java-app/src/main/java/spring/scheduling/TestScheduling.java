@@ -32,7 +32,7 @@ class SpringScheduling{
 		i++;
 	}
 	
-	@Scheduled(fixedRate=1000)
+//	@Scheduled(fixedRate=1000)
 	void test2() {
 		System.out.println("Spring Scheduling Test fixedDelay: "+new Date()+" ### "+i);
 		try {
