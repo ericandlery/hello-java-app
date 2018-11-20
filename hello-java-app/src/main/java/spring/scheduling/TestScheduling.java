@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -58,6 +59,7 @@ public class TestScheduling {
 	public static void main(String[] args) {
 		
 		ApplicationContext ctx=new ClassPathXmlApplicationContext("/spring/spring-config.xml");
+		ApplicationContext ctx2=new AnnotationConfigApplicationContext(TestTask.class);
 //		SpringScheduling ss=ctx.getBean("springScheduling",SpringScheduling.class);
 //		ss.test2();
 		try {
@@ -66,6 +68,7 @@ public class TestScheduling {
 			e.printStackTrace();
 		}
 		
+		((ConfigurableApplicationContext)ctx2).close();
 		((ConfigurableApplicationContext)ctx).close();
 
 	}
