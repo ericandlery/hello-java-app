@@ -18,7 +18,7 @@ public class F1Reader {
 		
 		System.out.println("POI GO");
 		
-		String fileName="";
+		String fileName="";	//It also works with Libre-built files too.
 		List<F1> f1List=new ArrayList<>();
 		
 		FileInputStream fis=null;
