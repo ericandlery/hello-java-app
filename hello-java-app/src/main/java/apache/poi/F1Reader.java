@@ -18,7 +18,7 @@ public class F1Reader {
 		
 		System.out.println("POI GO");
 		
-		String fileName="E:\\Java Test IO\\POI\\excel\\f1.xlsx";
+		String fileName="";
 		List<F1> f1List=new ArrayList<>();
 		
 		FileInputStream fis=null;
