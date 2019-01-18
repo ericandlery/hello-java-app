@@ -1,8 +1,11 @@
 package mybatis;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
+
+import mybatis.bean.Emp;
 
 public interface MyMapper2 {
 	
@@ -23,5 +26,11 @@ public interface MyMapper2 {
 	
 	@Select(value="select bdate from emp t limit 1")
 	public java.util.Date getUtilDate();
+	
+	@Select(value="select * from emp t limit 1")
+	public Emp getOneEmp();
+	
+	@Select(value="select * from emp")
+	public List<Emp> getEmps();
 
 }
