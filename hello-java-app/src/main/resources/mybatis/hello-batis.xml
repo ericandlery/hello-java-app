@@ -6,6 +6,7 @@
 
 	<typeAliases>
     	<typeAlias alias="Emp" type="mybatis.bean.Emp"/>
+    	<typeAlias alias="EmpObject" type="mybatis.bean.EmpObject"/>
     </typeAliases>
 
     <environments default="development">
