@@ -27,6 +27,7 @@ public class TestJavaConfig2 {
 		Environment env=new Environment("Development",new JdbcTransactionFactory(),ds);
 		Configuration config=new Configuration(env);
 		config.addMapper(MyMapper2.class);
+		config.addMapper(MyMapper3.class);
 		SqlSessionFactory ssf=new SqlSessionFactoryBuilder().build(config);
 		
 		try(SqlSession s=ssf.openSession()){
@@ -36,6 +37,9 @@ public class TestJavaConfig2 {
 //			System.out.println((Map)s.selectMap("getEmpByKey","empid"));
 			Map<Integer,Emp> empMap=s.selectMap("getEmpByKey","empid");
 			System.out.println(empMap.get(1));
+			
+			Emp emp=s.selectOne("getEmp",1);
+			System.out.println("Mapper3="+emp);
 			
 		}catch(Exception e) {
 			e.printStackTrace();
