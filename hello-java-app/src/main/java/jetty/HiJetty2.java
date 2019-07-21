@@ -11,8 +11,6 @@ import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 
-import jdk.incubator.http.HttpResponse;
-
 public class HiJetty2 extends AbstractHandler{
 
 	public static void main(String[] args) throws Exception {
