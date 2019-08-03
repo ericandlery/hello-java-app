@@ -30,6 +30,21 @@ public class LambdaTest {
 		System.out.println("After 8="+c.compare(o1, o2));
 		System.out.println("After 8="+c.compare(o1, o1));
 		System.out.println("After 8="+c.compare(o2, o1));
+		System.out.println("=".repeat(150));
+		
+		LambdaAnimal la=new LambdaDogImpl();
+		la.test();
+		la.eat();
+		
+		MyFunctionalInterface mfi=(Boolean b)->System.out.println("Smart Lambda!="+b);
+		mfi.testMine(false);
+		
+		mfi=(Boolean bbb)->bbb=true;
+		Boolean bbb=false;
+		mfi.testMine(bbb);
+		System.out.println(bbb);
+				
+//		NestedInterface ni=(String name,int num)->return null;
 
 	}
 
