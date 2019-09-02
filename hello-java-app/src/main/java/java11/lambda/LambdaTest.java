@@ -45,7 +45,20 @@ public class LambdaTest {
 		System.out.println(bbb);
 				
 //		NestedInterface ni=(String name,int num)->return null;
-
+		
+		System.out.println("=".repeat(150));
+		Runnable run=new Runnable() {
+			@Override
+			public void run() {
+				System.out.println("I'm running!");
+			}
+		};
+		run.run();
+		Runnable runLambda=()->System.out.println("Lambda is running wild!");
+		runLambda.run();
+		
+		System.out.println("=".repeat(150));
+				
 	}
 
 }
