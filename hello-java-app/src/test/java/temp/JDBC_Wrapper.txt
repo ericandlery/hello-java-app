@@ -1,0 +1,45 @@
+@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static List toList(ResultSet rs, Class<?> voClass) {
+		try {
+			List list = new ArrayList<>();
+			ResultSetMetaData meta = rs.getMetaData();
+			
+			List<Method> ms = Arrays.asList(ReflectionUtils.getDeclaredMethods(voClass));
+			ms = ms.parallelStream().filter(v -> v.getName().startsWith("set")).collect(Collectors.toList());
+			
+			while(rs.next()) {
+				voClass = Class.forName(voClass.getName());
+				Object obj = voClass.newInstance();
+				for(int i = 1 ; i <= meta.getColumnCount() ; i++) {
+					for(Method m : ms) {
+						if(m.getName().replaceFirst("set", "").equalsIgnoreCase(meta.getColumnName(i).replaceAll("_", ""))) {
+							List<Field> fs = Arrays.asList(voClass.getDeclaredFields());
+							Class t = fs.parallelStream().filter(f -> f.getName().equalsIgnoreCase(m.getName().replaceFirst("set", "")))
+												.collect(Collectors.toList())
+												.get(0).getType();
+							String typeName = t.getSimpleName();
+							switch(typeName){
+								case "Long":
+									m.invoke(obj, rs.getLong(i));
+									break;
+								case "Timestamp":
+									System.out.println(rs.getObject(i).getClass());
+									break;
+								case "String":
+									m.invoke(obj, rs.getString(i));
+									break;
+								default:
+									throw new RuntimeException();
+							}
+							break;
+						}
+					}
+				}
+				list.add(obj);
+			}
+			return list;
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+	}
